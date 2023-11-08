@@ -1,8 +1,8 @@
 import React, {PropsWithChildren} from 'react';
-import {Article} from "../model/Article";
+import {GetContentsResponseItem} from "@/shared";
 
 interface IProps {
-    data: Article
+    data: GetContentsResponseItem
 }
 
 export const ArticleListItem = ({data}: PropsWithChildren<IProps>) => {

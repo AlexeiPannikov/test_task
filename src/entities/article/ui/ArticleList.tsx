@@ -1,9 +1,9 @@
 import React, {PropsWithChildren} from 'react';
 import {ArticleListItem} from "@entities/article/ui/ArticleListItem";
-import {Article} from "@entities/article/model/Article";
+import {GetContentsResponse} from "@/shared";
 
 interface IProps {
-    items: Article[]
+    items: GetContentsResponse
 }
 
 export const ArticleList = ({items}: PropsWithChildren<IProps>) => {

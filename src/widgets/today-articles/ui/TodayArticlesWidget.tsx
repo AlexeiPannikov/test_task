@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Card} from "@/shared";
-import {ArticleList} from "@/entities";
+import {ArticleList, useFetchArticles} from "@/entities";
 
 const items: any[] = []
 
 export const TodayArticlesWidget = () => {
+
+    const [getArticles, getArticlesResult] = useFetchArticles({skip: 0, take: 10})
+
+    useEffect(() => {
+        getArticles()
+    }, []);
+
     return (
         <Card>
-            <ArticleList items={items}/>
+            {
+                //TODO
+                getArticlesResult.data && JSON.stringify(getArticlesResult.data)
+
+                // getArticlesResult.data && <ArticleList items={getArticlesResult.data}/>
+            }
         </Card>
     );
 };
