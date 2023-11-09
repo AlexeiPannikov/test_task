@@ -3,7 +3,7 @@ import {ArticleListItem} from "@entities/article/ui/ArticleListItem";
 import {GetContentsResponse} from "@/shared";
 
 interface IProps {
-    items: GetContentsResponse
+    items: GetContentsResponse["contents"]
 }
 
 export const ArticleList = ({items}: PropsWithChildren<IProps>) => {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {LogoSvg} from "@/shared";
 
 const LogoDescription = styled.div`
-  color: ${props => props.theme.secondaryTextColor};
+  color: ${props => props.theme.colors.secondaryTextColor};
   font-size: 12.1px;
 `
 

@@ -18,6 +18,13 @@ export const GET_CONTENTS = gql`
             dates {
                 posted,
             }
+            url,
+            thumbnail,
+            parents {
+                type
+                attachment,
+                id
+            }
         }
     }
 `

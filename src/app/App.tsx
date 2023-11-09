@@ -1,20 +1,32 @@
 import React from 'react';
 import styled from "styled-components";
 import {HeaderWidget} from "@/widgets";
-import {MainPage} from "@/pages";
+import {ArticlesPage} from "@/pages";
+import {Outlet} from "react-router-dom";
 
 const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
-  background-color: ${props => props.theme.backgroundColor};
+  overflow: hidden;
+  background-color: ${props => props.theme.colors.backgroundColor};
   padding: 40px;
-  color: ${props => props.theme.primaryTextColor};
+  color: ${props => props.theme.colors.primaryTextColor};
+  overflow-y: auto;
+  @media ${props => props.theme.media.medium} {
+    padding: 20px;
+  }
+  @media ${props => props.theme.media.small} {
+    padding: 10px 0 0 0;
+  }
 `
 
 const Content = styled.main`
   display: flex;
   justify-content: center;
   padding: 40px 0 0 0;
+  @media ${props => props.theme.media.small} {
+    padding: 20px 0 0 0;
+  }
 `
 
 export function App() {
@@ -22,7 +34,7 @@ export function App() {
         <MainWrapper>
             <HeaderWidget/>
             <Content>
-                <MainPage />
+                <Outlet />
             </Content>
         </MainWrapper>
     );

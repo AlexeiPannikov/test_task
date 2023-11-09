@@ -31,5 +31,9 @@
   },
   "include": [
     "src"
+  ],
+  "lib": [
+    "dom",
+    "esnext"
   ]
 }
