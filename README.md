@@ -1,7 +1,7 @@
 
 In the project directory, you should run:
-#### `npm schema`
+### `npm run schema`
 
-### `npm compile`
+### `npm run compile`
 
-### `npm start`
+### `npm run start`
