@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import {HeaderWidget} from "@/widgets";
-import {ArticlesPage} from "@/pages";
 import {Outlet} from "react-router-dom";
 import moment from "moment/moment";
 

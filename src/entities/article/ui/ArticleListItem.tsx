@@ -79,16 +79,10 @@ const StyledNavLink = styled(NavLink)`
     color: ${props => props.theme.colors.linkHoverColor};
   }
 
-  :visited {
-    color: red !important;
-  }
-
   text-decoration: none;
 `
 
 const Title = ({url, text}: { url: string, text: string }) => {
-    const theme = useTheme()
-
     return (
         <StyledNavLink
             to={url}
