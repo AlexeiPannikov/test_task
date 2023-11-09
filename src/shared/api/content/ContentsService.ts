@@ -8,18 +8,50 @@ export const GET_CONTENTS = gql`
             skip: $skip,
             take: $take,
         ) {
-            id,
+            id
             title {
-                short,
+                short
             },
             description {
-                intro,
+                intro
             },
+            dates {
+                posted
+            }
+            url
+            thumbnail
+            parents {
+                type
+                attachment
+                id
+            }
+        }
+    }
+`
+
+export const GET_CONTENT = gql`
+    query getContent($full_url: String!) {
+        content(
+            id: "",
+            lang: "ru",
+            project_id: "5107de83-f208-4ca4-87ed-9b69d58d16e1",
+            full_url: $full_url,
+        ) {
+            id
+            title {
+                long
+            }
+            description {
+                long
+                intro
+            },
+            thumbnail
+            counters {
+                view
+            }
             dates {
                 posted,
             }
-            url,
-            thumbnail,
             parents {
                 type
                 attachment,

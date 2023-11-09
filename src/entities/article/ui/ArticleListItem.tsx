@@ -1,19 +1,18 @@
-import React, {PropsWithChildren, useEffect, useState} from 'react';
-import {GetContentsResponseItem, H3} from "@/shared";
+import React, {PropsWithChildren} from 'react';
+import {getAttachmentSourceParent, GetContentsResponseItem, H3, useReadArticles} from "@/shared";
 import styled, {useTheme} from "styled-components";
-import {NavLink, useLocation, useNavigate, useNavigation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import moment from "moment";
-import 'moment/locale/ru'
 
 interface IProps {
     data: GetContentsResponseItem
 }
 
-const ArticleBox = styled.div<{ isvisited?: boolean }>`
+const ArticleBox = styled.div<{ $visited: boolean }>`
   margin: 24px 0 0 0;
   display: flex;
   align-items: flex-start;
-  //opacity: ${props => props.isvisited ? 0.5 : 1};
+  opacity: ${props => props.$visited ? 0.5 : 1};
 `
 
 const ArticleImageBox = styled.div`
@@ -65,7 +64,7 @@ const Time = styled.time`
 
 const getTimeAgo = (date: string | undefined) => {
     if (!date) return
-    return moment.unix(Number(date)).locale("ru").fromNow()
+    return moment.unix(Number(date)).fromNow()
 }
 
 const ParentImage = styled.img`
@@ -101,18 +100,17 @@ const Title = ({url, text}: { url: string, text: string }) => {
 
 export const ArticleListItem = ({data}: PropsWithChildren<IProps>) => {
 
+    const {isExist, addId} = useReadArticles()
+
     const onLinkClick = () => {
-        localStorage
+        addId(data.id)
     }
 
-    const getAttachmentSourceParent = () =>
-        data.parents?.find((item) => item?.type === "source")?.attachment
-
     return (
-        <ArticleBox>
+        <ArticleBox $visited={isExist(data.id)}>
             <NavLink
                 to={data.url}
-                onClick={}
+                onClick={onLinkClick}
             >
                 <ArticleImageBox>
                     <ArticleImage
@@ -125,10 +123,10 @@ export const ArticleListItem = ({data}: PropsWithChildren<IProps>) => {
                 <Description dangerouslySetInnerHTML={{__html: data.description?.intro || ""}}/>
                 <Published>
                     {
-                        getAttachmentSourceParent()
+                        getAttachmentSourceParent(data.parents)
                         &&
                         <ParentImage
-                            src={"https://i.simpalsmedia.com/point.md/logo/" + getAttachmentSourceParent()}
+                            src={"https://i.simpalsmedia.com/point.md/logo/" + getAttachmentSourceParent(data.parents)}
                         />
                     }
                     <Time>
