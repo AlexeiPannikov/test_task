@@ -18,6 +18,11 @@ export const GET_CONTENTS = gql`
             dates {
                 posted
             }
+            cparent {
+                url {
+                    ru
+                }
+            }
             url
             thumbnail
             parents {

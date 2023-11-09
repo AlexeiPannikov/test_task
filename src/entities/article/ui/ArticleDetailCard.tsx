@@ -1,5 +1,13 @@
-import React from 'react';
-import {Card, GET_CONTENT, getAttachmentSourceParent, GetContentRequest, GetContentResponse, H1} from "@/shared";
+import React, {useEffect} from 'react';
+import {
+    Card,
+    GET_CONTENT,
+    getAttachmentSourceParent,
+    GetContentRequest,
+    GetContentResponse,
+    H1,
+    useReadArticles
+} from "@/shared";
 import styled from "styled-components";
 import {useQuery} from "@apollo/client";
 import {useParams} from "react-router-dom";
@@ -32,17 +40,17 @@ const PostDate = styled.time`
   white-space: nowrap;
   letter-spacing: 0;
   text-transform: lowercase;
+  @media ${props => props.theme.media.extraSmall} {
+    font-size: 12px;
+  }
 `
 
-const Title = styled(H1)`
-  margin: 12px 0 0;
-`
-
-const ViewsCounter = styled.div<{beforeImage: string}>`
+const ViewsCounter = styled.div<{ beforeImage: string }>`
   margin-left: 32px;
   color: ${props => props.theme.colors.secondaryTextColor};
   font-size: 16px;
   position: relative;
+
   &:before {
     width: 18px;
     height: 18px;
@@ -53,6 +61,17 @@ const ViewsCounter = styled.div<{beforeImage: string}>`
     content: "";
     background: url(${props => props.beforeImage}) center top / contain no-repeat;
   }
+
+  @media ${props => props.theme.media.extraSmall} {
+    font-size: 12px;
+    &:before {
+      top: -2px;
+    }
+  }
+`
+
+const Title = styled(H1)`
+  margin: 12px 0 0;
 `
 
 const Intro = styled.h2`
@@ -79,9 +98,15 @@ const MainText = styled.div`
   letter-spacing: 0;
   line-height: 27px;
   margin-top: 24px;
+
   p {
     margin-bottom: 15px;
   }
+  
+  img, video {
+    width: 100%;
+  }
+  
   @media ${props => props.theme.media.extraSmall} {
     font-size: 16px;
   }
@@ -90,11 +115,15 @@ const MainText = styled.div`
 export const ArticleDetailCard = () => {
 
     const {articleLink} = useParams()
+    const {addId} = useReadArticles()
 
     const {data} = useQuery<GetContentResponse, GetContentRequest>(
         GET_CONTENT,
         {
-            variables: {full_url: articleLink}
+            variables: {full_url: articleLink},
+            onCompleted: (data) => {
+                addId(data.content.id)
+            }
         }
     )
 
@@ -123,15 +152,15 @@ export const ArticleDetailCard = () => {
                     </ViewsCounter>
                 </Header>
 
-                <Title dangerouslySetInnerHTML={{__html: data?.content.title?.long || ""}} />
+                <Title dangerouslySetInnerHTML={{__html: data?.content.title?.long || ""}}/>
 
-                <Intro dangerouslySetInnerHTML={{__html: data?.content.description?.intro || ""}} />
+                <Intro dangerouslySetInnerHTML={{__html: data?.content.description?.intro || ""}}/>
 
                 <MainImg
                     src={"https://i.simpalsmedia.com/point.md/news/600x315/" + data?.content?.thumbnail}
                 />
 
-                <MainText dangerouslySetInnerHTML={{__html: data?.content.description?.long || ""}} />
+                <MainText dangerouslySetInnerHTML={{__html: data?.content.description?.long || ""}}/>
             </Card>
         </Article>
     );

@@ -6,6 +6,9 @@ export type GetContentsResponseItem = Pick<Content, "id" | "url" | "thumbnail"> 
     dates: Maybe<Pick<ContentDates, "posted">>,
     description: Maybe<Pick<ContentDescription, "intro">>,
     parents: Maybe<Pick<Topic, "id" | "type" | "attachment">>[],
+    cparent: Maybe<Pick<Topic, "url">> & {
+        ru: string
+    }
 }
 
 export type GetContentsResponse = {

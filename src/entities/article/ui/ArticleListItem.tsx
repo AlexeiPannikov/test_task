@@ -94,17 +94,12 @@ const Title = ({url, text}: { url: string, text: string }) => {
 
 export const ArticleListItem = ({data}: PropsWithChildren<IProps>) => {
 
-    const {isExist, addId} = useReadArticles()
-
-    const onLinkClick = () => {
-        addId(data.id)
-    }
+    const {isExist} = useReadArticles()
 
     return (
         <ArticleBox $visited={isExist(data.id)}>
             <NavLink
-                to={data.url}
-                onClick={onLinkClick}
+                to={data.cparent?.ru ? data.cparent.ru  + "/" + data.url : data.url}
             >
                 <ArticleImageBox>
                     <ArticleImage
