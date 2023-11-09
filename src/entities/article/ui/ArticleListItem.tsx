@@ -1,6 +1,6 @@
 import React, {PropsWithChildren} from 'react';
 import {getAttachmentSourceParent, GetContentsResponseItem, H3, useReadArticles} from "@/shared";
-import styled, {useTheme} from "styled-components";
+import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import moment from "moment";
 
