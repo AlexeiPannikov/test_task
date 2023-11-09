@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Card, H2, Observer} from "@/shared";
 import {ArticleList, useFetchArticles} from "@/entities";
 import styled from "styled-components";

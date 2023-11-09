@@ -1,4 +1,4 @@
-import React, {ForwardedRef, PropsWithRef, useEffect, useRef} from "react";
+import React, {ForwardedRef, useEffect, useRef} from "react";
 import styled from "styled-components";
 
 interface IArgs {

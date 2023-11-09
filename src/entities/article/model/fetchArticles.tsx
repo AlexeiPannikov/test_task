@@ -1,10 +1,7 @@
 import {GET_CONTENTS, GetContentsResponse, GetContentsRequest} from "@/shared";
-import {} from "@shared/api/content/requests/GetContentsRequest";
-import {LazyQueryHookOptions, useLazyQuery, useQuery} from "@apollo/client";
+import {useLazyQuery} from "@apollo/client";
 import {useObserver} from "@shared/lib/useObserver";
-import styled from "styled-components";
-import React, {useEffect, useState} from "react"
-import {log} from "util";
+import React, {useEffect} from "react"
 
 export const useFetchArticles = () => {
     const args = {
