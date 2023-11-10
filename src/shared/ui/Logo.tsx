@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import styled from "styled-components";
 import {LogoSvg} from "@/shared";
 
@@ -17,9 +17,15 @@ const LogoWrap = styled.div`
   flex-direction: column;
 `
 
-export const Logo = () => {
+interface IProps {
+    onClick?: () => void
+}
+
+export const Logo = ({onClick}: PropsWithChildren<IProps>) => {
     return (
-        <LogoWrap>
+        <LogoWrap
+            onClick={() => onClick && onClick()}
+        >
             <a>
                 <LogoImage src={LogoSvg} alt="logo"/>
             </a>
