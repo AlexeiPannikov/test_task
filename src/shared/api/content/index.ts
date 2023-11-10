@@ -1,3 +1,3 @@
 export * from "./ContentsService"
-export * from "./responses/GetContentsResponse"
-export * from "./requests/GetContentsRequest"
+export * from "./responses/ContentResponses"
+export * from "./requests/ContentRequests"

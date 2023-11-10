@@ -45,7 +45,7 @@ const PostDate = styled.time`
   }
 `
 
-const ViewsCounter = styled.div<{ beforeImage: string }>`
+const ViewsCounter = styled.div<{ $beforeimage: string }>`
   margin-left: 32px;
   color: ${props => props.theme.colors.secondaryTextColor};
   font-size: 16px;
@@ -59,7 +59,7 @@ const ViewsCounter = styled.div<{ beforeImage: string }>`
     top: 0;
     left: -20px;
     content: "";
-    background: url(${props => props.beforeImage}) center top / contain no-repeat;
+    background: url(${props => props.$beforeimage}) center top / contain no-repeat;
   }
 
   @media ${props => props.theme.media.extraSmall} {
@@ -102,11 +102,11 @@ const MainText = styled.div`
   p {
     margin-bottom: 15px;
   }
-  
+
   img, video {
     width: 100%;
   }
-  
+
   @media ${props => props.theme.media.extraSmall} {
     font-size: 16px;
   }
@@ -147,7 +147,7 @@ export const ArticleDetailCard = () => {
                             moment.unix(Number(data?.content.dates?.posted)).format("D MMMM YYYY H:mm")
                         }
                     </PostDate>
-                    <ViewsCounter beforeImage={EyeImg}>
+                    <ViewsCounter $beforeimage={EyeImg}>
                         {data?.content.counters?.view}
                     </ViewsCounter>
                 </Header>
@@ -156,9 +156,13 @@ export const ArticleDetailCard = () => {
 
                 <Intro dangerouslySetInnerHTML={{__html: data?.content.description?.intro || ""}}/>
 
-                <MainImg
-                    src={"https://i.simpalsmedia.com/point.md/news/600x315/" + data?.content?.thumbnail}
-                />
+                {
+                    data?.content?.thumbnail
+                    &&
+                    <MainImg
+                        src={"https://i.simpalsmedia.com/point.md/news/600x315/" + data?.content?.thumbnail}
+                    />
+                }
 
                 <MainText dangerouslySetInnerHTML={{__html: data?.content.description?.long || ""}}/>
             </Card>
