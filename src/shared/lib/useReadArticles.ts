@@ -1,7 +1,7 @@
 type ID = string
 
 export const useReadArticles = () => {
-    const KEY = "read_articled"
+    const KEY = "read_articles"
     const getIds = (): ID[] => {
         const data = localStorage.getItem(KEY)
         return data ? JSON.parse(data) : []
