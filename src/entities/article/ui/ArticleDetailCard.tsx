@@ -86,6 +86,18 @@ const Intro = styled.h2`
   }
 `
 
+const MainImageBox = styled.div`
+  p {
+    color: ${props => props.theme.colors.secondaryTextColor};
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 16px;
+    padding-top: 8px;
+    word-break: break-word;
+    margin-bottom: 24px;
+  }
+`
+
 const MainImg = styled.img`
   width: 100%;
   display: block;
@@ -97,7 +109,6 @@ const MainText = styled.div`
   font-size: 18px;
   letter-spacing: 0;
   line-height: 27px;
-  margin-top: 24px;
 
   p {
     margin-bottom: 15px;
@@ -159,9 +170,12 @@ export const ArticleDetailCard = () => {
                 {
                     data?.content?.thumbnail
                     &&
-                    <MainImg
-                        src={"https://i.simpalsmedia.com/point.md/news/600x315/" + data?.content?.thumbnail}
-                    />
+                    <MainImageBox>
+                        <MainImg
+                            src={"https://i.simpalsmedia.com/point.md/news/600x315/" + data?.content?.thumbnail}
+                        />
+                        <p  dangerouslySetInnerHTML={{__html: data?.content.description?.thumbnail || ""}}/>
+                    </MainImageBox>
                 }
 
                 <MainText dangerouslySetInnerHTML={{__html: data?.content.description?.long || ""}}/>

@@ -49,6 +49,7 @@ export const GET_CONTENT = gql`
             description {
                 long
                 intro
+                thumbnail
             },
             thumbnail
             counters {

@@ -19,7 +19,7 @@ export type GetContentResponse = {
     content: Pick<Content, "id" | "thumbnail"> & {
         title: Maybe<Pick<ContentTitle, "long">>,
         dates: Maybe<Pick<ContentDates, "posted">>,
-        description: Maybe<Pick<ContentDescription, "long" | "intro">>,
+        description: Maybe<Pick<ContentDescription, "long" | "intro" | "thumbnail">>,
         parents: Maybe<Pick<Topic, "id" | "type" | "attachment">>[],
         counters: Maybe<Pick<Counters, "view">>,
     }
